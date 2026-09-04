@@ -1,98 +1,171 @@
-  #                                                           CHAPTER:1
---------------------------------------------------------------------------------------------------------------------------------------------------------------------
-1:every data every input is a bunch of bits and interpreting these bits debeds on the context, it could be same sequence of bits but it could be a number, ASCII text, instructions
+# CS:APP — Chapter 1
 
+## 1. Bits and Data Representation
 
-2:programs are translated by other programs(compile drivers) to the low level machine code  it's written by text editor but it's human readable(source program),
-linked with some standard libraries,using functions, using variables : 
+All data is ultimately represented as a sequence of bits.
 
-first: the compiling driver first trasnnlate it into modified source program(preprocessor) that it extends the file headers ad defines it (still an ASCII text file),
+The same sequence of bits can represent different things depending on how it is interpreted. It could represent an integer, characters such as ASCII text, machine instructions, or other types of data.
 
-second: it compiles the source program(becoming a assembly program), 
+---
 
-third: assembling the program to become an machine code(binary)program , 
+## 2. From Source Code to Executable
 
-forth:linking, that we talked about the used functions that are defined in another standard libraries then it becomes an excutable program
+Programs written in languages such as C are translated into machine-level instructions through several stages.
 
-3:processors take instructions --> when you run an executable program it's loaded from disk to the main memory, pc(proram counter) points at the addres of the program in memory,
-loading these instuction into registers, opreating these instructions in ALU 
+### 1. Preprocessing
 
-shell is a command line program that you can executes command from
+The preprocessor modifies the source code, for example by expanding header files and macros.
 
-multi threading is that the processor can execute multible control flow for same process
+The result is still a text-based source file.
 
-multi core is that processor can operate multi proccess parralle and each has it's own memory cash l1,l2  but l3 and lower memory and storage is shared 
+### 2. Compilation
 
-every input is a stream of bits so input devices it could store as files(sequence of bytes) 
+The compiler translates the preprocessed source code into assembly language.
 
-buses carry bits in words(fixed amount of bytes) : it could be 32bit,64bit
+### 3. Assembly
 
-but who gives these instructions to run the program, shedueling proccess, handle the software instructins : it's the kernel
+The assembler translates the assembly code into machine code, producing an object file.
 
-operating systems: makes an abstraction layer to proccess : processor --> processes, main memory --> virtual memory, i/o devices --> files
+### 4. Linking
 
-these abstraction layers make us handling easier with these complicated level 
+The linker combines object files and required libraries, resolving references to functions and other symbols, producing the final executable program.
 
-text+-----------------------------------+ 0xFFFFFFFF (4 GB)
+```text
+Source Code
+    ↓
+Preprocessor
+    ↓
+Modified Source
+    ↓
+Compiler
+    ↓
+Assembly
+    ↓
+Assembler
+    ↓
+Object File
+    ↓
+Linker
+    ↓
+Executable
+```
 
+---
 
-|           Kernel Space            |
+## 3. The Processor
 
+When an executable program runs, the program and its required data are loaded into memory.
 
-|       (Operating System/I/O)      |
+The **Program Counter (PC)** contains the address of the next instruction to be executed.
 
-+-----------------------------------+ 0xC0000000 (3 GB)
+The processor fetches and executes instructions using components such as registers and the ALU.
 
-|                                   |
+---
 
+## 4. Shell
 
-|         Unused / Guard            |
+A shell is a command-line program that allows the user to interact with the operating system by executing commands and programs.
 
+---
 
-|                                   |
+## 5. Processes and Threads
 
+A **process** is a running program together with its execution state and resources.
 
-+-----------------------------------+
+A process can contain multiple **threads**. Each thread represents an independent control flow, while threads within the same process share the process's address space and other resources.
 
-|               user Stack               |  --> every time y use functions
+---
 
+## 6. Multi-Core Processors
 
-|                 v                 |
+A multi-core processor contains multiple CPU cores that can execute instructions independently and potentially in parallel.
 
+The exact cache hierarchy depends on the processor architecture. Some caches may be private to individual cores while others may be shared.
 
-+-----------------------------------+
+---
 
+## 7. I/O and Data
 
-|       memory maped regoin for shred libraries        | --> functions                |
+Input and output can be viewed as streams of data represented as bits.
 
+Many I/O devices interact with the system through abstractions such as files and streams.
 
-|          (Memory Growth)          |
+---
 
+## 8. Buses
 
-|                 ^                 |
+Buses provide communication paths between components of a computer system.
 
+They transfer data in groups of bits, often referred to as words. The size of a word depends on the architecture, such as 32-bit or 64-bit systems.
 
-+-----------------------------------+
+---
 
+## 9. The Kernel
 
+The kernel is the core of the operating system.
 
-|        run time heap         | --> memory allocations
+It manages hardware resources and provides services such as:
 
+* Process scheduling
+* Memory management
+* I/O
+* Resource management
+* Communication between applications and hardware
 
-+-----------------------------------+
+---
 
+## 10. Operating System Abstractions
 
+The operating system provides abstractions that hide the complexity of the underlying hardware.
 
-|        read/write data          | --> variables
+```text
+Processor        → Processes
+Main Memory      → Virtual Memory
+I/O Devices      → Files
+```
 
+These abstractions allow programmers to work with complex hardware through simpler interfaces.
 
-+-----------------------------------+
+---
 
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-#                                                    CHAPTER:2
+## 11. Virtual Memory
 
-|          read only code and data |           |
+A simplified view of a 32-bit process address space:
 
+```text
+0xFFFFFFFF
++-----------------------------+
+|       Kernel Space          |
+|     OS / privileged code    |
++-----------------------------+
+|                             |
+|       Unused / Guard        |
+|                             |
++-----------------------------+
+|        User Stack           |
+|             ↓               |
++-----------------------------+
+|   Shared Libraries /       |
+|   Memory-Mapped Regions     |
+|             ↑               |
++-----------------------------+
+|        Runtime Heap         |
+|             ↑               |
++-----------------------------+
+|     Read/Write Data         |
++-----------------------------+
+|     Read-Only Code/Text     |
++-----------------------------+
+0x00000000
+```
 
-+-----------------------------------+ 0x00000000 (0 GB)
+The exact layout and addresses depend on the architecture and operating system.
 
+## Things I Want to Remember
+
+* The same bits can have different meanings depending on their interpretation.
+* The compiler does not directly produce the final executable; preprocessing, compilation, assembly, and linking are separate stages.
+* The PC points to the next instruction to execute.
+* Processes can contain multiple threads.
+* The kernel manages resources and provides abstractions over hardware.
+* Virtual memory provides each process with its own virtual address space.
