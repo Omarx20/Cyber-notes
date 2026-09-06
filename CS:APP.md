@@ -169,3 +169,5 @@ The exact layout and addresses depend on the architecture and operating system.
 * Processes can contain multiple threads.
 * The kernel manages resources and provides abstractions over hardware.
 * Virtual memory provides each process with its own virtual address space.
+* storing data in memory is different between machines [bigendian_littleendian]
+* storing these data types is diffrent bits patterns so diffenet hexa presentation 
