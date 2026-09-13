@@ -25,7 +25,7 @@ namp is powerful for : (manuplating packets , Ready-made scripts) -->firewalls e
 17. -sn : sending icmp and tcp packets for hosts
 18. -Pn : doesn't check if host is exist by not sending ICMP echo request as usual
 19. -f : Used to fragment the packets (i.e. split them into smaller pieces) making it less likely that the packets will be detected by a firewall or IDS.
-20. An alternative to -f, but providing more control over the size of the packets: --mtu <number>, accepts a maximum transmission unit size to use for the packets sent. This must be a multiple of 8.
+20. --mtu <number>, accepts a maximum transmission unit size to use for the packets sent. This must be a multiple of 8.
 21. --scan-delay <time>ms:- used to add a delay between packets sent. This is very useful if the network is unstable, but also for evading any time-based firewall/IDS triggers which may be in place.
 22. --badsum:- this is used to generate in invalid checksum for packets. Any real TCP/IP stack would drop this packet, however, firewalls may potentially respond automatically, without bothering to check the checksum of the packet. As such, this switch can be used to determine the presence of a firewall/IDS
 ---
