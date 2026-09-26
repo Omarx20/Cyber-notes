@@ -1,9 +1,5 @@
 # TCP/IP Illustrated — Chapters 1–2 Cyber Notes
 
-> **Purpose:** مراجعة طويلة المدى للمواضيع التي ناقشناها معًا أثناء دراسة TCP/IP Illustrated، بصياغة عملية تناسب `Cyber-notes` وخصوصًا الـ Networking / Pentesting.
->
-> **Important:** الكتاب قديم نسبيًا، لذلك توجد فيه تقنيات وعناوين تاريخية/deprecated. عند المراجعة ركّز على الـ mental models أولًا، ثم التفاصيل التاريخية.
-
 ---
 
 ## 0. The mental model I want to remember
